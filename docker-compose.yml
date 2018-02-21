@@ -1,0 +1,14 @@
+version: "2"
+services:
+  db:
+    image: store/microsoft/mssql-server-linux:2017-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=verysecure
+      - TZ=Europe/Berlin
+      - LD_PRELOAD=/nodirect_open.so
+    ports:
+      - 1433:1433
+    volumes:
+      - ./data.zfs:/var/opt/mssql/data        
+      - ./nodirect_open.so:/nodirect_open.so
